@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Pixel Idle RPG</title>
+    <title>Pixel Idle RPG - Global Miner</title>
     <style>
-        body { background: #1a1a1a; color: white; font-family: 'Apple SD Gothic Neo', sans-serif; text-align: center; margin: 0; padding: 20px; touch-action: manipulation; }
+        body { background: #1a1a1a; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; margin: 0; padding: 20px; touch-action: manipulation; }
         .stat-card { background: #333; padding: 20px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
         .gold { color: #ffd700; font-size: 2.5rem; font-weight: bold; margin: 10px 0; }
         .stats { color: #aaa; font-size: 0.9rem; margin-bottom: 10px; }
@@ -15,32 +15,45 @@
         .ad-btn { background: #e74c3c; box-shadow: 0 4px 0 #c0392b; color: white; margin-top: 20px; }
         .log { background: #000; height: 120px; overflow-y: auto; text-align: left; padding: 15px; font-size: 0.85rem; border-radius: 10px; color: #0f0; margin-top: 20px; border: 1px solid #444; }
         .ad-slot { background: #222; border: 1px dashed #555; padding: 15px; margin: 20px 0; font-size: 0.8rem; color: #777; border-radius: 8px; }
+        .info-section { text-align: left; background: #222; padding: 25px; border-radius: 10px; margin-top: 40px; font-size: 0.95rem; line-height: 1.6; color: #ccc; border: 1px solid #333; }
     </style>
 </head>
 <body>
-    <div class="ad-slot">광고 배너 영역 (애드센스 승인 후 노출)</div>
+    <div class="ad-slot">Advertisement Space (Available after AdSense approval)</div>
     
     <div class="stat-card">
-        <h3>⛏️ 전설의 광부 기사</h3>
+        <h3>⛏️ Legendary Miner Knight</h3>
         <div class="gold" id="gold-display">0 G</div>
-        <div class="stats" id="stat-text">공격력: 1 | 초당 자동 생산: 0</div>
+        <div class="stats" id="stat-text">ATK: 1 | Auto-income: 0/s</div>
     </div>
 
-    <button onclick="manualClick()">🔨 곡괭이질 하기 (터치!)</button>
-    <button class="upgrade-btn" onclick="upgradeAtk()">⚔️ 무기 강화 (Cost: <span id="atk-cost">10</span>G)</button>
-    
-    <button class="ad-btn" onclick="simulateAd()">📺 광고 보고 수익 2배 버프 (30초)</button>
+    <button onclick="manualClick()">🔨 Mine Gold (Touch!)</button>
+    <button class="upgrade-btn" onclick="upgradeAtk()">⚔️ Upgrade Weapon (Cost: <span id="atk-cost">10</span>G)</button>
+    <button class="ad-btn" onclick="simulateAd()">📺 Watch Ad for 2X Buff (30s)</button>
 
-    <div class="log" id="log-box">게임에 접속했습니다. 황금을 캐보세요!</div>
+    <div class="log" id="log-box">Welcome to Pixel Idle RPG! Start mining gold.</div>
 
-    <div class="ad-slot">광고 배너 영역 (애드센스 승인 후 노출)</div>
+    <div class="info-section">
+        <h2>About Pixel Idle RPG</h2>
+        <p>Pixel Idle RPG is a specialized incremental clicker game where players can experience the growth of a legendary miner. This web-based simulation focuses on strategic upgrades and efficient resource management.</p>
+        
+        <h3>How to Play</h3>
+        <ul>
+            <li><b>Manual Mining:</b> Tap the main button to gather gold manually.</li>
+            <li><b>Equipment Upgrades:</b> Spend your gold to increase Attack Power. Higher ATK means more gold per click and faster automatic production.</li>
+            <li><b>Revenue Boost:</b> Use the 'Ad Buff' feature to double your mining efficiency for a limited time.</li>
+        </ul>
+
+        <h3>Technical Roadmap</h3>
+        <p>Currently in Version 1.0. We are planning to implement a 'Pet System' for automated clicking and a 'Rebirth System' for long-term progression. Our goal is to provide a seamless idle gaming experience on both mobile and desktop platforms.</p>
+        
+        <p style="font-size: 0.8rem; color: #555; margin-top: 20px;">© 2026 ryoung0460-alt. All rights reserved. Powered by GitHub Pages.</p>
+    </div>
 
     <script>
-        // 게임 상태 관리
         let state = { gold: 0, atk: 1, autoIncome: 0, atkCost: 10 };
         let buffActive = false;
 
-        // 자동 저장 기능 (로컬 스토리지)
         function saveGame() { localStorage.setItem('pixel_idle_save', JSON.stringify(state)); }
         function loadGame() {
             const saved = localStorage.getItem('pixel_idle_save');
@@ -52,7 +65,7 @@
 
         function updateUI() {
             document.getElementById('gold-display').innerText = `${Math.floor(state.gold).toLocaleString()} G`;
-            document.getElementById('stat-text').innerText = `공격력: ${state.atk} | 초당 자동 생산: ${state.autoIncome.toFixed(1)}`;
+            document.getElementById('stat-text').innerText = `ATK: ${state.atk} | Auto-income: ${state.autoIncome.toFixed(1)}/s`;
             document.getElementById('atk-cost').innerText = state.atkCost.toLocaleString();
             saveGame();
         }
@@ -60,7 +73,7 @@
         function manualClick() {
             let gain = state.atk * (buffActive ? 2 : 1);
             state.gold += gain;
-            addLog(`곡괭이질! +${gain}G 획득`);
+            addLog(`Mined! +${gain}G`);
             updateUI();
         }
 
@@ -68,21 +81,21 @@
             if(state.gold >= state.atkCost) {
                 state.gold -= state.atkCost;
                 state.atk += 1;
-                state.autoIncome += 0.5; // 강화 시 자동 생산량도 조금씩 증가
+                state.autoIncome += 0.5;
                 state.atkCost = Math.floor(state.atkCost * 1.6);
-                addLog("무기가 강화되었습니다! 공격력 +1");
+                addLog("Weapon Upgraded! ATK +1");
                 updateUI();
             } else {
-                addLog("골드가 부족합니다!");
+                addLog("Not enough gold!");
             }
         }
 
         function simulateAd() {
-            addLog("광고를 시청합니다... (30초간 버프!)");
+            addLog("Ad starts... 2X Buff Active for 30s!");
             buffActive = true;
             setTimeout(() => {
                 buffActive = false;
-                addLog("버프 시간이 종료되었습니다.");
+                addLog("Buff expired.");
             }, 30000);
         }
 
@@ -92,7 +105,6 @@
             lb.innerHTML = `<div>[${time}] ${msg}</div>` + lb.innerHTML;
         }
 
-        // 초당 자동 생산 실행
         setInterval(() => {
             if (state.autoIncome > 0) {
                 state.gold += state.autoIncome;
@@ -100,9 +112,7 @@
             }
         }, 1000);
 
-        // 시작 시 데이터 로드
         loadGame();
     </script>
 </body>
 </html>
-
