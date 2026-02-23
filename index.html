@@ -2,36 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pixel Idle RPG - Global Miner Edition</title>
+
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7139200069286283" crossorigin="anonymous"></script>
+
     <style>
-        body { background: #1a1a1a; color: white; font-family: 'Segoe UI', sans-serif; text-align: center; margin: 0; padding: 20px; touch-action: manipulation; }
+        body { background: #1a1a1a; color: white; font-family: 'Segoe UI', Tahoma, sans-serif; text-align: center; margin: 0; padding: 20px; }
         .stat-card { background: #333; padding: 20px; border-radius: 15px; margin-bottom: 20px; }
-        .gold { color: #ffd700; font-size: 2.5rem; font-weight: bold; }
-        button { background: #f1c40f; border: none; padding: 15px 0; font-size: 1.1rem; border-radius: 12px; cursor: pointer; margin: 8px 0; font-weight: bold; width: 100%; box-shadow: 0 4px 0 #bc9c10; }
+        .gold { color: #ffd700; font-size: 2.5rem; font-weight: bold; margin: 10px 0; }
+        button { background: #f1c40f; border: none; padding: 15px; font-size: 1.1rem; border-radius: 12px; cursor: pointer; margin: 8px 0; font-weight: bold; width: 100%; box-shadow: 0 4px 0 #bc9c10; }
         .upgrade-btn { background: #3498db; box-shadow: 0 4px 0 #2471a3; }
         .ad-btn { background: #e74c3c; box-shadow: 0 4px 0 #c0392b; color: white; }
         .log { background: #000; height: 100px; overflow-y: auto; text-align: left; padding: 10px; font-size: 0.8rem; border-radius: 10px; color: #0f0; margin-top: 15px; }
-        .info-section { text-align: left; background: #222; padding: 20px; border-radius: 10px; margin-top: 30px; font-size: 0.9rem; line-height: 1.6; color: #ccc; }
+        .info-section { text-align: left; background: #222; padding: 25px; border-radius: 10px; margin-top: 40px; font-size: 0.95rem; line-height: 1.6; color: #ccc; }
     </style>
 </head>
 <body>
-    <div style="background: #222; border: 1px dashed #555; padding: 10px; margin-bottom: 20px; font-size: 0.8rem; color: #777;">Ad Space</div>
+    <div style="background: #222; border: 1px dashed #555; padding: 15px; margin-bottom: 20px; color: #777;">Advertisement Space</div>
+    
     <div class="stat-card">
-        <h3>⛏️ Global Miner Knight</h3>
+        <h3>⛏️ Legendary Miner Knight</h3>
         <div class="gold" id="gold-display">0 G</div>
         <div id="stat-text">ATK: 1 | Auto: 0/s</div>
     </div>
-    <button onclick="manualClick()">🔨 Mine Gold</button>
+
+    <button onclick="manualClick()">🔨 Mine Gold (Touch!)</button>
     <button class="upgrade-btn" onclick="upgradeAtk()">⚔️ Upgrade (Cost: <span id="atk-cost">10</span>G)</button>
     <button class="ad-btn" onclick="simulateAd()">📺 Ad Buff (2X)</button>
-    <div class="log" id="log-box">Welcome! Start mining.</div>
+
+    <div class="log" id="log-box">Welcome! Start mining gold.</div>
+
     <div class="info-section">
         <h2>About Pixel Idle RPG</h2>
-        <p>A global incremental clicker game focused on strategic resource management.</p>
-        <p>© 2026 Pixel Idle RPG. Contact: ryoung0460-alt</p>
+        <p>Pixel Idle RPG is a global incremental game. Players can grow their miner through strategic upgrades and resource management.</p>
+        <h3>How to Play</h3>
+        <ul>
+            <li>Tap the main button to gather gold manually.</li>
+            <li>Upgrade your weapons to increase efficiency.</li>
+            <li>Watch ads to boost your mining speed.</li>
+        </ul>
+        <p>© 2026 Pixel Idle RPG. All rights reserved. Contact: ryoung0460-alt</p>
     </div>
+
     <script>
         let state = { gold: 0, atk: 1, autoIncome: 0, atkCost: 10 };
         let buffActive = false;
@@ -61,4 +74,3 @@
     </script>
 </body>
 </html>
-
