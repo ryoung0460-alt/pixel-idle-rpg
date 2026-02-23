@@ -3,115 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Pixel Idle RPG - Global Miner</title>
+    <title>Pixel Idle RPG - Global Miner Edition</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7139200069286283" crossorigin="anonymous"></script>
     <style>
-        body { background: #1a1a1a; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; margin: 0; padding: 20px; touch-action: manipulation; }
-        .stat-card { background: #333; padding: 20px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-        .gold { color: #ffd700; font-size: 2.5rem; font-weight: bold; margin: 10px 0; }
-        .stats { color: #aaa; font-size: 0.9rem; margin-bottom: 10px; }
+        body { background: #1a1a1a; color: white; font-family: 'Segoe UI', sans-serif; text-align: center; margin: 0; padding: 20px; touch-action: manipulation; }
+        .stat-card { background: #333; padding: 20px; border-radius: 15px; margin-bottom: 20px; }
+        .gold { color: #ffd700; font-size: 2.5rem; font-weight: bold; }
         button { background: #f1c40f; border: none; padding: 15px 0; font-size: 1.1rem; border-radius: 12px; cursor: pointer; margin: 8px 0; font-weight: bold; width: 100%; box-shadow: 0 4px 0 #bc9c10; }
-        button:active { transform: translateY(2px); box-shadow: 0 2px 0 #bc9c10; }
         .upgrade-btn { background: #3498db; box-shadow: 0 4px 0 #2471a3; }
-        .ad-btn { background: #e74c3c; box-shadow: 0 4px 0 #c0392b; color: white; margin-top: 20px; }
-        .log { background: #000; height: 120px; overflow-y: auto; text-align: left; padding: 15px; font-size: 0.85rem; border-radius: 10px; color: #0f0; margin-top: 20px; border: 1px solid #444; }
-        .ad-slot { background: #222; border: 1px dashed #555; padding: 15px; margin: 20px 0; font-size: 0.8rem; color: #777; border-radius: 8px; }
-        .info-section { text-align: left; background: #222; padding: 25px; border-radius: 10px; margin-top: 40px; font-size: 0.95rem; line-height: 1.6; color: #ccc; border: 1px solid #333; }
+        .ad-btn { background: #e74c3c; box-shadow: 0 4px 0 #c0392b; color: white; }
+        .log { background: #000; height: 100px; overflow-y: auto; text-align: left; padding: 10px; font-size: 0.8rem; border-radius: 10px; color: #0f0; margin-top: 15px; }
+        .info-section { text-align: left; background: #222; padding: 20px; border-radius: 10px; margin-top: 30px; font-size: 0.9rem; line-height: 1.6; color: #ccc; }
     </style>
 </head>
 <body>
-    <div class="ad-slot">Advertisement Space (Available after AdSense approval)</div>
-    
+    <div style="background: #222; border: 1px dashed #555; padding: 10px; margin-bottom: 20px; font-size: 0.8rem; color: #777;">Ad Space</div>
     <div class="stat-card">
-        <h3>⛏️ Legendary Miner Knight</h3>
+        <h3>⛏️ Global Miner Knight</h3>
         <div class="gold" id="gold-display">0 G</div>
-        <div class="stats" id="stat-text">ATK: 1 | Auto-income: 0/s</div>
+        <div id="stat-text">ATK: 1 | Auto: 0/s</div>
     </div>
-
-    <button onclick="manualClick()">🔨 Mine Gold (Touch!)</button>
-    <button class="upgrade-btn" onclick="upgradeAtk()">⚔️ Upgrade Weapon (Cost: <span id="atk-cost">10</span>G)</button>
-    <button class="ad-btn" onclick="simulateAd()">📺 Watch Ad for 2X Buff (30s)</button>
-
-    <div class="log" id="log-box">Welcome to Pixel Idle RPG! Start mining gold.</div>
-
+    <button onclick="manualClick()">🔨 Mine Gold</button>
+    <button class="upgrade-btn" onclick="upgradeAtk()">⚔️ Upgrade (Cost: <span id="atk-cost">10</span>G)</button>
+    <button class="ad-btn" onclick="simulateAd()">📺 Ad Buff (2X)</button>
+    <div class="log" id="log-box">Welcome! Start mining.</div>
     <div class="info-section">
         <h2>About Pixel Idle RPG</h2>
-        <p>Pixel Idle RPG is a specialized incremental clicker game where players can experience the growth of a legendary miner. This web-based simulation focuses on strategic upgrades and efficient resource management.</p>
-        
-        <h3>How to Play</h3>
-        <ul>
-            <li><b>Manual Mining:</b> Tap the main button to gather gold manually.</li>
-            <li><b>Equipment Upgrades:</b> Spend your gold to increase Attack Power. Higher ATK means more gold per click and faster automatic production.</li>
-            <li><b>Revenue Boost:</b> Use the 'Ad Buff' feature to double your mining efficiency for a limited time.</li>
-        </ul>
-
-        <h3>Technical Roadmap</h3>
-        <p>Currently in Version 1.0. We are planning to implement a 'Pet System' for automated clicking and a 'Rebirth System' for long-term progression.</p>
-        <p style="font-size: 0.8rem; color: #555; margin-top: 20px;">© 2026 ryoung0460-alt. All rights reserved. Powered by GitHub Pages.</p>
+        <p>A global incremental clicker game focused on strategic resource management.</p>
+        <p>© 2026 Pixel Idle RPG. Contact: ryoung0460-alt</p>
     </div>
-
     <script>
         let state = { gold: 0, atk: 1, autoIncome: 0, atkCost: 10 };
         let buffActive = false;
-
-        function saveGame() { localStorage.setItem('pixel_idle_save', JSON.stringify(state)); }
-        function loadGame() {
-            const saved = localStorage.getItem('pixel_idle_save');
-            if(saved) {
-                state = JSON.parse(saved);
-                updateUI();
-            }
-        }
-
         function updateUI() {
             document.getElementById('gold-display').innerText = `${Math.floor(state.gold).toLocaleString()} G`;
-            document.getElementById('stat-text').innerText = `ATK: ${state.atk} | Auto-income: ${state.autoIncome.toFixed(1)}/s`;
+            document.getElementById('stat-text').innerText = `ATK: ${state.atk} | Auto: ${state.autoIncome.toFixed(1)}/s`;
             document.getElementById('atk-cost').innerText = state.atkCost.toLocaleString();
-            saveGame();
         }
-
         function manualClick() {
-            let gain = state.atk * (buffActive ? 2 : 1);
-            state.gold += gain;
-            addLog(`Mined! +${gain}G`);
+            state.gold += state.atk * (buffActive ? 2 : 1);
             updateUI();
         }
-
         function upgradeAtk() {
             if(state.gold >= state.atkCost) {
                 state.gold -= state.atkCost;
                 state.atk += 1;
                 state.autoIncome += 0.5;
                 state.atkCost = Math.floor(state.atkCost * 1.6);
-                addLog("Weapon Upgraded! ATK +1");
                 updateUI();
-            } else {
-                addLog("Not enough gold!");
             }
         }
-
         function simulateAd() {
-            addLog("Ad starts... 2X Buff Active for 30s!");
             buffActive = true;
-            setTimeout(() => {
-                buffActive = false;
-                addLog("Buff expired.");
-            }, 30000);
+            setTimeout(() => { buffActive = false; }, 30000);
         }
-
-        function addLog(msg) {
-            const lb = document.getElementById('log-box');
-            const time = new Date().toLocaleTimeString();
-            lb.innerHTML = `<div>[${time}] ${msg}</div>` + lb.innerHTML;
-        }
-
-        setInterval(() => {
-            if (state.autoIncome > 0) {
-                state.gold += state.autoIncome;
-                updateUI();
-            }
-        }, 1000);
-
-        loadGame();
+        setInterval(() => { if(state.autoIncome > 0) { state.gold += state.autoIncome; updateUI(); } }, 1000);
     </script>
 </body>
 </html>
+
