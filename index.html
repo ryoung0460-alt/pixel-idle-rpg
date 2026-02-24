@@ -2,55 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pixel Idle RPG - Global Miner Edition</title>
+<title>Pixel Miner RPG</title>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7139200069286283" crossorigin="anonymous"></script>
-<style>
-body{background:#1a1a1a;color:white;font-family:sans-serif;text-align:center;margin:0;padding:20px}
-.card{background:#333;padding:20px;border-radius:15px;margin-bottom:20px}
-.gold{color:#ffd700;font-size:2.5rem;font-weight:bold}
-button{background:#f1c40f;border:none;padding:15px;font-size:1.1rem;border-radius:12px;cursor:pointer;margin:8px 0;font-weight:bold;width:100%}
-.up-btn{background:#3498db;color:white}.ad-btn{background:#e74c3c;color:white}
-.log{background:#000;height:80px;overflow-y:auto;text-align:left;padding:10px;font-size:0.8rem;color:#0f0;margin-top:15px;border-radius:10px}
-.info{text-align:left;background:#222;padding:20px;border-radius:10px;margin-top:30px;font-size:0.9rem;color:#ccc;line-height:1.5}
-</style>
 </head>
-<body>
-<div style="border:1px dashed #555;padding:10px;margin-bottom:20px;color:#777;font-size:0.8rem">Ad Space</div>
-<div class="card">
-<h3>Legendary Miner Knight</h3>
-<div class="gold" id="gold-display">0 G</div>
-<div id="stat-text">ATK: 1 | Auto: 0/s</div>
-</div>
-<button onclick="manualClick()">🔨 Mine Gold</button>
-<button class="up-btn" onclick="upgradeAtk()">⚔️ Upgrade (Cost: <span id="atk-cost">10</span>G)</button>
-<button class="ad-btn" onclick="simulateAd()">📺 Ad Buff (2X)</button>
-<div class="log" id="log-box">Game Started...</div>
-<div class="info">
-<h2>Game Guide</h2>
-<p>Pixel Idle RPG is a global incremental game. Tap to mine gold and upgrade your legendary weapons.</p>
-<h3>Features</h3>
-<ul>
-<li>Strategic upgrades for maximum efficiency.</li>
-<li>Global competition for idle game fans.</li>
-<li>Continuous updates and pet systems coming soon.</li>
-</ul>
-<p>© 2026 Pixel Idle RPG. Contact: ryoung0460-alt</p>
-</div>
-<script>
-let s={g:0,a:1,i:0,c:10};let b=false;
-function update(){
-document.getElementById('gold-display').innerText=Math.floor(s.g).toLocaleString()+' G';
-document.getElementById('stat-text').innerText='ATK: '+s.a+' | Auto: '+s.i.toFixed(1)+'/s';
-document.getElementById('atk-cost').innerText=s.c.toLocaleString();
-}
-function manualClick(){s.g+=s.a*(b?2:1);update();}
-function upgradeAtk(){
-if(s.g>=s.c){s.g-=s.c;s.a+=1;s.i+=0.5;s.c=Math.floor(s.c*1.6);update();}
-}
-function simulateAd(){b=true;setTimeout(()=>{b=false;},30000);}
-setInterval(()=>{if(s.i>0){s.g+=s.i;update();}},1000);
-update();
-</script>
+<body style="background:#111;color:#fff;text-align:center;padding-top:100px;">
+<h1>⛏️ Miner Knight Global</h1>
+<p>Strategic Idle RPG Project</p>
+<p>© 2026 ryoung0460-alt</p>
 </body>
 </html>
