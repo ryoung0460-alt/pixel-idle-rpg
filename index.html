@@ -3,47 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Pixel Idle RPG</title>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7139200069286283" crossorigin="anonymous"></script>
+<title>Pixel Idle RPG - Global Miner</title>
+
+<meta name="google-adsense-account" content="ca-pub-7139200069286283">
+
 <style>
-body{background:#1a1a1a;color:#fff;font-family:sans-serif;text-align:center;margin:0;padding:20px}
+body{background:#121212;color:#fff;font-family:sans-serif;text-align:center;margin:0;padding:20px}
+.container{max-width:500px;margin:auto}
 .card{background:#222;padding:20px;border-radius:15px;border:1px solid #333;margin-bottom:20px}
-#gold{color:#f1c40f;font-size:2.5rem;font-weight:bold;margin:10px 0}
-button{width:100%;padding:15px;margin:8px 0;border:none;border-radius:10px;font-weight:bold;font-size:1.1rem;cursor:pointer}
-.b1{background:#f1c40f;box-shadow:0 4px 0 #d4ac0d}
-.b2{background:#3498db;color:#fff;box-shadow:0 4px 0 #2980b9}
-#log{background:#000;height:80px;overflow-y:auto;text-align:left;padding:10px;font-size:0.8rem;color:#2ecc71;border-radius:8px;margin-top:15px}
-.info{text-align:left;background:#1a1a1a;padding:20px;border-radius:10px;margin-top:40px;border:1px solid #333;font-size:0.9rem}
+.gold{color:#f1c40f;font-size:2.5rem;font-weight:bold;margin:10px 0}
+button{width:100%;padding:15px;margin:8px 0;border:none;border-radius:10px;font-weight:bold;font-size:1.1rem;cursor:pointer;transition:0.2s}
+.b-mine{background:#f1c40f;box-shadow:0 4px 0 #d4ac0d}
+.b-up{background:#3498db;color:#fff;box-shadow:0 4px 0 #2980b9}
+#log{background:#000;height:100px;overflow-y:auto;text-align:left;padding:10px;font-size:0.8rem;color:#2ecc71;border-radius:8px;margin-top:15px}
+.info{text-align:left;background:#1a1a1a;padding:20px;border-radius:10px;margin-top:40px;border:1px solid #333;font-size:0.9rem;line-height:1.6}
 </style>
 </head>
 <body>
-<div class="card">
-<h3>⛏️ Pixel Miner Global</h3>
-<div id="gold">0 G</div>
-<div id="stat" style="color:#aaa">ATK: 1 | Auto: 0/s</div>
-</div>
-<button class="b1" onclick="mine()">🔨 MINE GOLD</button>
-<button class="b2" onclick="up()">⚔️ UPGRADE (<span id="cost">10</span>G)</button>
-<div id="log">> Game Ready...</div>
-<div class="info">
-<h2>Global Idle RPG Project</h2>
-<p>Strategic mining simulation for global players. Upgrade your knight and reach the top.</p>
-<p>© 2026 ryoung0460-alt. All rights reserved.</p>
+<div class="container">
+    <div class="card">
+        <h3>⛏️ Legendary Miner Knight</h3>
+        <div class="gold" id="g">0 G</div>
+        <div id="s" style="color:#aaa;">ATK: 1 | Auto: 0/s</div>
+    </div>
+    <button class="b-mine" onclick="m()">🔨 MINE GOLD</button>
+    <button class="b-up" onclick="u()">⚔️ UPGRADE (Cost: <span id="c">10</span>G)</button>
+    <div id="log">> Game Loaded. Welcome!</div>
+    <div class="info">
+        <h2>About Global Pixel RPG</h2>
+        <p>This is a strategic idle mining simulation. Upgrade your knight and compete globally. Optimized for mobile play.</p>
+        <p>© 2026 ryoung0460-alt. All rights reserved.</p>
+    </div>
 </div>
 <script>
-let g=0, a=1, i=0, c=10;
+let d={g:0,a:1,i:0,c:10};
 function update(){
-document.getElementById('gold').innerText=Math.floor(g).toLocaleString()+' G';
-document.getElementById('stat').innerText=`ATK: ${a} | Auto: ${i.toFixed(1)}/s`;
-document.getElementById('cost').innerText=c.toLocaleString();
+    document.getElementById('g').innerText=Math.floor(d.g).toLocaleString()+' G';
+    document.getElementById('s').innerText=`ATK: ${d.a} | Auto: ${d.i.toFixed(1)}/s`;
+    document.getElementById('c').innerText=d.c.toLocaleString();
 }
-function mine(){g+=a;addLog('Mined +'+a+'G');update();}
-function up(){
-if(g>=c){g-=c;a+=1;i+=0.5;c=Math.floor(c*1.6);addLog('Level Up!');update();}
-else{addLog('Need more gold!');}
+function m(){d.g+=d.a;addLog('Mined gold!');update();}
+function u(){
+    if(d.g>=d.c){d.g-=d.c;d.a+=1;d.i+=0.5;d.c=Math.floor(d.c*1.6);addLog('Upgrade Success!');update();}
+    else{addLog('Need more gold!');}
 }
 function addLog(m){const l=document.getElementById('log');l.innerHTML=`<div>> ${m}</div>`+l.innerHTML;}
-setInterval(()=>{if(i>0){g+=i;update();}},1000);
+setInterval(()=>{if(d.i>0){d.g+=d.i;update();}},1000);
 update();
 </script>
 </body>
